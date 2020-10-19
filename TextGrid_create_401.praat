@@ -6,10 +6,10 @@
 
 #### Form to enter directory
 form Enter director
-    sentence Directory ./mycorpus/
+    sentence Directory .\mycorpus\
 endform
 
-pauseScript: "Are you sure? All your current TextGrid files will be deleted."
+pauseScript: "Warning: Your current TextGrids under this directory might be modified or deleted."
 #### Get files under the specified directory
 Create Strings as file list... listwav 'directory$'
 nfile = Get number of strings
@@ -23,7 +23,6 @@ for i from 1 to nfile
         Read from file... 'directory$''current_file$'
         object_name$ = selected$("Sound")
 		gridName$ = directory$ + object_name$ + ".TextGrid"
-		appendInfoLine: gridName$
 		if not fileReadable(gridName$)
             idx += 1
             To TextGrid: "syll phon VOT", "VOT"
